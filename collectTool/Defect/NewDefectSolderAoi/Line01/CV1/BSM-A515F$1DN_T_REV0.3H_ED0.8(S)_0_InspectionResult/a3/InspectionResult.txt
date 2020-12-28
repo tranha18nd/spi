@@ -1,0 +1,76 @@
+[MACHINE_INFO]
+
+szBuild = SPIworksPro 1.5.3.19 (9660) 201903RC1
+
+
+
+[PCB_INFO]
+
+iActive = 0
+
+szModelName = BSM-S102DL$32_B_Q9-0612-0617_ 03A_01
+
+iPCBIndex = 1963
+
+iBlock = 4
+
+nInspectPcb = 4
+
+iInspectPoint = 1572
+
+iDefectCount = 0
+
+iResultCount = 0
+
+szInspectResult = OK
+
+szTestResult = OK
+
+szReviseResult = OK
+
+Array = ,,,
+
+szBarcode = A0817202A0Y71,A0817202A0Y59
+
+Warpage = 132,100,120,107,110
+
+Warpage Result = OK,OK,OK,OK,OK
+
+Min warpage = 5791,5807,5791,5791,5812
+
+Max warpage = 5923,5907,5911,5898,5923
+
+PCB LSL USL = 0, 600
+
+Array LSL, USL = 0, 0
+
+CycleTime = 11.31
+
+iTeachingTime = 0
+
+Id No = 
+
+Jig Barcode = 
+
+Jig Data =
+
+Jig min =
+
+Jig Max =
+
+Jig LSL, USL =
+
+Jig Result =
+
+
+
+[DEFECT]
+
+;Count = Array,CompName,PadName,Volume/Area/Height/Offset_X/Offset_Y/Bridge_H/Bridge_W,TestResult,ReviseResult,DefectCode,ImageName,InspectResult,RepairResult
+
+
+
+[RESULT]
+
+;Count = Array,CompName,PadName,Volume,Area,Height,Offset_X,Offset_Y,Bridge_H,Bridge_W,TestResult,ReviseResult,DefectCode,ImageName
+
