@@ -1,8 +1,7 @@
 require('dotenv').config()
 const moduleApp = require('./controllers/modules')
 const mongoose = require('mongoose');
-const io = require('socket.io')();
-io.listen(8888);
+
 
 let mongoDB = 'mongodb://localhost/sAOIData';
 mongoose.connect(mongoDB, {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true });
@@ -17,4 +16,5 @@ db.once('open', () => {
 moduleApp.mainProcess('./config.txt')
 setInterval(()=>{
     moduleApp.mainProcess('./config.txt')
+    
 }, 15000)

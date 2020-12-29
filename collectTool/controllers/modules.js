@@ -1,10 +1,17 @@
 const fs = require('fs');
 const fse = require('fs-extra');
-const io = require('socket.io')();
+
 const BarCode = require('../models/barCode.js')
 const ErrCode = require('../models/errCode.js')
 const LastStatus = require('../models/lastStatus.js')
 
+const io = require('socket.io')({
+    cors: {
+      origin: "http://localhost:3000",
+      methods: ["GET", "POST"]
+    }
+  });
+  io.listen(8888);
 
 let rFile = function (file) { 
     return new Promise(function(resolve,reject){
@@ -36,6 +43,7 @@ let moveFile = function (src,dest) {
 let dataProcess = function (barCode, line, model, type){
     return new Promise(function(resolve,reject){
         if(type == "B"){
+            // so sánh model
             let data = {
                 barCode : barCode,
                 line : line,
@@ -57,13 +65,7 @@ let dataProcess = function (barCode, line, model, type){
                 } else {
                     if(result === null){
                         resolve('!!!DANGER!!! - '+line+' : BARCODE HAS NOT BEEN RUN BOT FACE')
-
-                        io.on('connection', socket => {
-                            // console.log(socket)
-                            // io.sockets.emit(line, 'NG') 
-                            client.on('disconnect');
-                        })
-                        
+                        io.emit("collectTool", new Date())
                         let errType = 'NOBOT'
                         let errData = {
                             barCode : barCode,
@@ -96,6 +98,10 @@ let dataProcess = function (barCode, line, model, type){
                             }
                         })
                     } else {
+                        // sửa thành update
+                        // khi nào confirm thỳ xóa errCode 
+                        // khi nào đủ cặp thỳ update barcode
+
                         BarCode.deleteMany({ barCode: barCode }, (err,result)=>{
                             if(err){
                                 reject("ERR DELETING")
