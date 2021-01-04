@@ -1,9 +1,11 @@
 const ErrCode = require('../models/errCodeModel')
 
-const index = async(req, res, next) => {
+const getErrCode = async(req, res, next) => {
 	try {
-		const users = await ErrCode.find({})
-		return res.status(200).json({users})
+		const {line} = req.params
+		const listErrCode = await ErrCode.find({line:line})
+        return res.status(200).json({listErrCode})
+        
 	}catch(err) {
 		next(err)
 	}
@@ -11,5 +13,5 @@ const index = async(req, res, next) => {
 
 
 module.exports = {
-	index
+	getErrCode
 }

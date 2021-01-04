@@ -59,7 +59,7 @@ let dataProcess = function (barCode, line, model, type){
                 }
             })
         } else {
-            BarCode.findOne({barCode:barCode,type:"B"}, (err, result)=>{
+            BarCode.findOne({barCode:barCode,type:"B",status:1}, (err, result)=>{
                 if(err){
                     reject("ERR FINDING:"+ err)
                 } else {
@@ -98,13 +98,9 @@ let dataProcess = function (barCode, line, model, type){
                             }
                         })
                     } else {
-                        // sửa thành update
-                        // khi nào confirm thỳ xóa errCode 
-                        // khi nào đủ cặp thỳ update barcode
-
-                        BarCode.deleteMany({ barCode: barCode }, (err,result)=>{
+                        BarCode.update({ barCode: barCode }, {status:2}, (err,result)=>{
                             if(err){
-                                reject("ERR DELETING")
+                                reject("ERR UPDATING TopFace")
                             }else {
                                 resolve(".")
                             }

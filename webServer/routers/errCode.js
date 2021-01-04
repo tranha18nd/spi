@@ -1,9 +1,11 @@
 const express = require('express')
-// const {validateParam, schemas, validateBody} = require('../helpers/routeHelpers')
-// const router = require("express").Router();
+const {validateParam, schemas, validateBody} = require('../helpers/errCodeHelpers')
+
 const router = express.Router()
-// const userController = require('../controllers/user')
+const errCodeController = require('../controllers/errCodeController')
 
-
-
+// router.route('/')
+// 	.get(statusController.getStatus)
+router.route('/detail/:line')
+	.get(validateParam(schemas.idSchema, 'line'),errCodeController.getErrCode)
 module.exports = router

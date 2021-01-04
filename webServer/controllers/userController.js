@@ -1,4 +1,6 @@
 const User = require('../models/userModel')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 const index = async(req, res, next) => {
 	try {
 		const users = await User.find({})
@@ -39,8 +41,21 @@ const updateUser = async(req, res, next) =>{
 	}
 }
 
-
+const login = async(req, res, next)=>{
+	try{
+		let userName = req.body.userName
+		let passWord = req.body.passWord
+		const user = await User.findOne({user:userName,pass:passWord})
+		let token = jwt.sign({_id:user._id}, process.env.SECRET_KEY)
+		return res.status(200).json({
+			message:"Login Success",
+			token:token
+		})
+	} catch (err){
+		next(err)
+	}
+}
 
 module.exports = {
-	index, newUser, getUser, updateUser
+	index, newUser, getUser, updateUser, login
 }

@@ -15,14 +15,16 @@ mongoose.connect(mongoDB, {useNewUrlParser: true, useFindAndModify: false, useUn
 const userRouter = require('./routers/user')
 const statusRouter = require('./routers/status')
 const setupRouter = require('./routers/setup')
+const errCodeRouter = require('./routers/errCode')
 
-app.use('/users', userRouter)
+app.use('/user', userRouter)
 app.use('/status', statusRouter)
+app.use('/errCode', errCodeRouter)
 app.use('/setup', setupRouter)
 
 app.get('/', (req, res, next) => {
     return res.status(200).json({
-        message: 'Welcome to WebServer API S-AOI'
+        message: 'Welcome to WebServer API SPI'
     })
 })
 // define err/ catch err 404

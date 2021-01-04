@@ -9,6 +9,7 @@ let BarCodeSchema = new Schema({
     type: String,
     model: String,
     line: String,
+    status:{type:Number, default:1},
     updateTime: Date
 });
 

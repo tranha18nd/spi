@@ -7,7 +7,7 @@ let Schema = mongoose.Schema;
 let StatusCodeSchema = new Schema({
     line: String,
     model: String,
-    status: { type: String, default: 'OK'}
+    status: { type: Number, default: '1'}
 });
 
 let LastStatus = mongoose.model('laststatus', StatusCodeSchema );
